@@ -1,13 +1,14 @@
 import datetime
 import gi
-import TodoComp
+import TodoTComp
 import json
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gdk, GLib
 
-# the rewind button is not set
-# the progress is not in store ie not storing
+# the rewind button is not set the progress is not in store ie not storing
+# bug found : start first todo wait till end
+# now stop the program and reopen it , you will see 1st and 3rd todo not completed
 
 builder = Gtk.Builder()
 builder.add_from_file("../Todo_Glade.glade")
@@ -26,14 +27,16 @@ def getActiveRadio(radio):
     return active
 
 
-class Start:
+class App:
 
     def __init__(self):
         self.Window = builder.get_object("MainWindow")
         self.TodoContainer = builder.get_object("TodoContainer")
         self.newTodoButton = builder.get_object("createNewTodo")
         self.discardTodoButton = builder.get_object("discardNewTodo")
-
+        #################################
+        self.Builder = builder
+        #################################
         self.TodoList = []
         self.DataStorage = "../assets/data/database.json"
 
@@ -49,7 +52,7 @@ class Start:
         return Gtk.Box.get_children(self.TodoContainer)
 
     def addTodoComp(self, title):
-        todoComponent = TodoComp.Todo({"title": title, "counter": str(len(self.getTodoContainerChild()) + 1)})
+        todoComponent = TodoTComp.Todo({"title": title, "counter": str(len(self.getTodoContainerChild()) + 1)})
         Gtk.Box.add(self.TodoContainer, todoComponent.todo)
         return todoComponent
 
@@ -303,5 +306,5 @@ class Start:
     #     GLib.timeout_add_seconds(1, self.pu)
 
 
-Start()
+App()
 Gtk.main()
