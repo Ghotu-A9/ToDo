@@ -1,18 +1,24 @@
-from Todo import App
+def getActiveRadio(radio):
+    active = None
+    for rad in radio.get_group():
+        if rad.get_active():
+            active = rad
+    return active
 
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gdk, GLib
 
-class PlayPauseUtility(App):
+class InputUtility:
 
-    def __init__(self):
+    def __init__(self, app):
+        self.App = app
         self.inputPermission = True
 
+        print("Initialized Todo Form Events")
+
     def getInputForTodo(self):
-        title = str(builder.get_object("inputTitle").get_text())
-        time = builder.get_object("inputTime").get_value()
-        timeUnit = getActiveRadio(builder.get_object("TodoHour")).get_label()
-        alarm = getActiveRadio(builder.get_object("TodoAlarmYes")).get_label()
+        title = str(self.App.builder.get_object("inputTitle").get_text())
+        time = self.App.builder.get_object("inputTime").get_value()
+        timeUnit = getActiveRadio(self.App.builder.get_object("TodoHour")).get_label()
+        alarm = getActiveRadio(self.App.builder.get_object("TodoAlarmYes")).get_label()
 
         if title.strip() == "":
             title = "new Todo"

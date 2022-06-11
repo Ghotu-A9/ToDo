@@ -11,7 +11,7 @@ class Todo:
         self.con = param.get("counter") or str(0)
         self.title = param.get("title") or "New ToDo"
         self.state = "Created"
-        self.template = param.get("template") or "../assets/temp/todo.glade"
+        self.template = param.get("template") or "../assets/glade/todoCard.glade"
 
         builder.add_from_file(self.template)
 
@@ -24,10 +24,10 @@ class Todo:
         self.editButton = builder.get_object("EditTodo")
         self.controlButton = builder.get_object("ResumeTodo")
         self.completeButton = builder.get_object("ApplyTodo")
-        self.progressThread=None
-        self.lastInitialisation=None;
-        self.relativeProgress = 0;
-        self.absoluteProgress = 0;
+        self.progressThread = None
+        self.lastInitialisation = None;
+        self.relativeProgress = 0
+        self.absoluteProgress = 0
 
         self.initialize()
 

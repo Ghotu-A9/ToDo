@@ -1,35 +1,28 @@
-from Todo import App
+import json
 
 
-class StoreUtility(App):
+class StoreUtility:
+
     def __init__(self):
         self.DataStorage = "../assets/data/database.json"
 
+        print("Initialized Todo Database")
+
     def saveToStore(self, data):
-        file = open(self.DataStorage, 'r')
-        loaded = json.load(file)
-        file.close()
+        loaded = self.getDatabase()
         loaded.append(data)
         self.localWrite(loaded)
 
     def removeFromStoreByIndex(self, index):
-        file = open(self.DataStorage, 'r')
-        loaded = json.load(file)
-        file.close()
-
+        loaded = self.getDatabase()
         if index is not None and index < len(loaded):
             del loaded[index]
-
         self.localWrite(loaded)
 
     def removeFromStoreByValue(self, value):
-        file = open(self.DataStorage, 'r')
-        loaded = json.load(file)
-        file.close()
-
+        loaded = self.getDatabase()
         if value and value in loaded:
             loaded.remove(value)
-
         self.localWrite(loaded)
 
     def localWrite(self, data):
@@ -38,9 +31,7 @@ class StoreUtility(App):
         file2.close()
 
     def modifyTodoStoreProperty(self,index,option,value):
-        file = open(self.DataStorage, 'r')
-        loaded = json.load(file)
-        file.close()
+        loaded = self.getDatabase()
         loaded[index][option] = value;
         self.localWrite(loaded)
 
