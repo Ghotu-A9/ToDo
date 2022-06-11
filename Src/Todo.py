@@ -14,7 +14,7 @@ from gi.repository import Gtk, Gdk, GLib
 
 # the rewind button is not set the progress is not in store ie not storing
 
-
+# the datastore problem
 #  ! now solved (because of todoProgressCompleted function in (progress_TUtility.py) -> double writing the database,
 #  don`t use the playpauseTodo function for other functionality)
 
