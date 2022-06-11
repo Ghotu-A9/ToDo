@@ -1,0 +1,63 @@
+.todoControlButton{
+    margin-left: 10px;
+}
+
+ 
+.TodoWrapper{
+    border-radius: 5px;
+    margin:5px;
+    padding: 15px;
+    box-shadow: 1px 1px 2px 0px ;
+    background-color: white;
+}
+
+.TodoText{
+   color:#303030;
+   font-size:large;
+   font-weight: 400;
+}
+
+.TodoCounter{
+    margin-right:15px;
+    background-color: #505050;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top:3px;
+    padding-bottom: 3px;
+    border-radius:5px;
+    color: white;
+    box-shadow: 0 0 1px 0px black ;
+}
+
+.ToDoTop{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left:10px;
+    padding-right:10px;
+
+    color: white;
+    background-color: #303030;
+}
+
+.ToDoBackground{
+    background-color: #303030;
+}
+
+.ToDoContainer{
+    margin-top: 5px;
+}
+
+.ToDoControlArea{
+    margin-left: 5px;
+}
+
+.ToDoProgressContainer{
+    margin-top: 10px;
+    margin-right: 0px;
+}
+
+.TodoProgressBarText{
+    margin-bottom:2.5px;
+   
+}
+

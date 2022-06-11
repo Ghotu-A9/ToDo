@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.2 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <!-- interface-local-resource-path /media/user/Work/Python/Glade/ToDo/assets -->
+  <!-- interface-css-provider-path assets/css/main.css -->
+<object class="GtkBox" id="TodoMain">
+                            <property name="name">TodoMain</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <child>
+                                  <object class="GtkAspectFrame">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="label_xalign">0</property>
+                                    <property name="shadow_type">none</property>
+                                    <child>
+                                      <object class="GtkLabel" id="TodoCounter">
+                                        <property name="name">TodoCounter</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">1</property>
+                                        <property name="justify">center</property>
+                                        <attributes>
+                                          <attribute name="absolute-size" value="25000"/>
+                                        </attributes>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="TodoCounter"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkAspectFrame">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="label_xalign">0</property>
+                                    <property name="shadow_type">none</property>
+                                    <child>
+                                      <object class="GtkLabel" id="TodoLabel">
+                                        <property name="name">TodoLabel</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="hexpand">False</property>
+                                        <property name="label" translatable="yes">Home work school work etc rkhbvv jtuuuu ftgyj vyjtyj tyjttj yjtytyjt tjtjt utyty tyk</property>
+                                        <property name="justify">center</property>
+                                        <property name="wrap">True</property>
+                                        <property name="ellipsize">end</property>
+                                        <property name="width_chars">60</property>
+                                        <property name="max_width_chars">120</property>
+                                        <property name="lines">1</property>
+                                        <attributes>
+                                          <attribute name="style" value="normal"/>
+                                        </attributes>
+                                        <style>
+                                          <class name="TodoText"/>
+                                        </style>
+                                      </object>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">True</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">2</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="width_request">500</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="halign">center</property>
+                                <property name="spacing">10</property>
+                                <child>
+                                  <object class="GtkProgressBar" id="TodoProgress">
+                                    <property name="name">TodoProgress</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="valign">center</property>
+                                    <property name="fraction">0.0</property>
+                                    <property name="ellipsize">end</property>
+                                    <style>
+                                      <class name="TodoProgressBar"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">True</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="ProgressLabel">
+                                    <property name="name">ProgressLabel</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="valign">center</property>
+                                    <property name="label" translatable="yes">0%</property>
+                                    <property name="justify">center</property>
+                                    <style>
+                                      <class name="TodoProgressBarText"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkAspectFrame">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="label_xalign">0</property>
+                                    <property name="shadow_type">none</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">end</property>
+                                        <child>
+                                          <object class="GtkButton" id="RemoveTodo">
+                                            <property name="name">RemoveTodo</property>
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">True</property>
+                                            <property name="halign">center</property>
+                                            <property name="valign">center</property>
+                                            <child>
+                                              <object class="GtkImage">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="stock">gtk-cancel</property>
+                                              </object>
+                                            </child>
+                                            <style>
+                                              <class name="todoControlButton"/>
+                                            </style>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton" id="EditTodo">
+                                            <property name="name">EditTodo</property>
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">True</property>
+                                            <property name="halign">center</property>
+                                            <property name="valign">center</property>
+                                            <child>
+                                              <object class="GtkImage">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="stock">gtk-edit</property>
+                                              </object>
+                                            </child>
+                                            <style>
+                                              <class name="todoControlButton"/>
+                                            </style>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton" id="ResumeTodo">
+                                            <property name="name">ResumeTodo</property>
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">True</property>
+                                            <property name="halign">center</property>
+                                            <property name="valign">center</property>
+                                            <child>
+                                              <object class="GtkImage">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="stock">gtk-media-play</property>
+                                              </object>
+                                            </child>
+                                            <style>
+                                              <class name="todoControlButton"/>
+                                            </style>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton" id="ApplyTodo">
+                                            <property name="name">ApplyTodo</property>
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">True</property>
+                                            <property name="halign">center</property>
+                                            <property name="valign">center</property>
+                                            <child>
+                                              <object class="GtkImage">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="stock">gtk-apply</property>
+                                              </object>
+                                            </child>
+                                            <style>
+                                              <class name="todoControlButton"/>
+                                            </style>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="ToDoControlArea"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">2</property>
+                                  </packing>
+                                </child>
+                                <style>
+                                  <class name="ToDoProgressContainer"/>
+                                </style>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <style>
+                              <class name="TodoWrapper"/>
+                            </style>
+                          </object>
+<!--                          <packing>-->
+<!--                            <property name="expand">False</property>-->
+<!--                            <property name="fill">True</property>-->
+<!--                            <property name="position">0</property>-->
+<!--                          </packing>-->
+
+                          </interface>
