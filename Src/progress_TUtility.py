@@ -33,37 +33,12 @@ class ProgressUtility:
 
     def todoProgressCompleted(self, comp, i, data):
 
-        data1 = self.App.PlayPauseTUtility.changeComponentIconsAndState("complete", comp, i, data);
-        data2 = self.App.PlayPauseTUtility.changeComponentIconsAndState("complete", comp, i, data);
+        data1 = self.App.PlayPauseTUtility.changeComponentIconsAndState("complete", comp, i, data)
+        nearestTodo = self.App.Operation.findNearestPausedTodo(i)
 
-        nearestPositive = 1
-        nearestNegative = len(self.App.TodoList)
-        negsign = False
-        if len(self.App.TodoList) > 1:
-            length = len(self.App.TodoList)
-            for l in range(length):
-                if self.App.TodoList[l].state == "Paused":
-                    if (i - l) > 0:
-                        nearestPositive = (i - l)
-                        negsign = True
-                        # print("upper", nearestPositive)
-                    elif (i - l) < 0:
-                        nearestNegative = (l - i)
-                        # print("lower",nearestNegative)
-                        negsign = False
-                        break
-
-        if negsign:
-            if self.App.TodoList[i - nearestPositive].state != "Completed":
-                data2 = self.App.PlayPauseTUtility.changeComponentIconsAndState("play",
-                                                                                self.App.TodoList[i - nearestPositive],
-                                                                                (i - nearestPositive), data1)
-                self.App.Store.localWrite(data2)
+        if nearestTodo is not None:
+            data2 = self.App.PlayPauseTUtility.changeComponentIconsAndState("play", self.App.TodoList[nearestTodo], nearestTodo, data1)
+            self.App.Store.localWrite(data2)
         else:
-            if (i + nearestNegative) < (len(self.App.TodoList)):
-                if self.App.TodoList[i + nearestNegative].state != "Completed":
-                    data2 = self.App.PlayPauseTUtility.changeComponentIconsAndState("play", self.App.TodoList[
-                        i + nearestPositive], (i + nearestPositive), data1)
-                    self.App.Store.localWrite(data2)
+            self.App.Store.localWrite(data1)
 
-        self.App.Store.localWrite(data2)

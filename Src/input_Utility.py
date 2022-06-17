@@ -15,10 +15,10 @@ class InputUtility:
         print("Initialized Todo Form Events")
 
     def getInputForTodo(self):
-        title = str(self.App.builder.get_object("inputTitle").get_text())
-        time = self.App.builder.get_object("inputTime").get_value()
-        timeUnit = getActiveRadio(self.App.builder.get_object("TodoHour")).get_label()
-        alarm = getActiveRadio(self.App.builder.get_object("TodoAlarmYes")).get_label()
+        title = str(self.App.Builder.get_object("inputTitle").get_text())
+        time = self.App.Builder.get_object("inputTime").get_value()
+        timeUnit = getActiveRadio(self.App.Builder.get_object("TodoHour")).get_label()
+        alarm = getActiveRadio(self.App.Builder.get_object("TodoAlarmYes")).get_label()
 
         if title.strip() == "":
             title = "new Todo"

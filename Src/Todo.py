@@ -8,6 +8,7 @@ from add_remove_TUtility import AddRemoveUtility
 from event_Utility import EventUtility
 from play_pause_TUtility import PlayPauseUtility
 from progress_TUtility import ProgressUtility
+from operation_TUtility import OperationUtility
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gdk, GLib
@@ -50,6 +51,7 @@ class App:
         self.AddRemoveTUtility = AddRemoveUtility(self)
         self.PlayPauseTUtility = PlayPauseUtility(self)
         self.ProgressTUtility = ProgressUtility(self)
+        self.Operation = OperationUtility(self)
 
         self.Events = EventUtility(self)
 

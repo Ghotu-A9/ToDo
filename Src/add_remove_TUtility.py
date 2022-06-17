@@ -36,7 +36,7 @@ class AddRemoveUtility:
         if self.App.TodoList[index].state == "Playing":
             del self.App.TodoList[index]
             self.App.Store.removeFromStoreByIndex(index)
-            if len(self.App.TodoList) > 0:
+            if (len(self.App.TodoList) > 0 and self.App.TodoList[0]):
                 self.App.PlayPauseTUtility.playpauseTodo(0, self.App.TodoList[0], 0)
         else:
             del self.App.TodoList[index]
