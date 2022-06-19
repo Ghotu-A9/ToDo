@@ -9,6 +9,7 @@ from event_Utility import EventUtility
 from play_pause_TUtility import PlayPauseUtility
 from progress_TUtility import ProgressUtility
 from operation_TUtility import OperationUtility
+from voice_Utility import VoiceUtility
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gdk, GLib
@@ -42,11 +43,16 @@ class App:
         self.Builder = builder
         self.TodoTCompClass = TodoTComp
         self.Window = self.Builder.get_object("MainWindow")
+        self.Stack = self.Builder.get_object("AppStackMain")
+        self.TodoContainer = self.Builder.get_object("TodoContainer")
+        self.newTodoButton = self.Builder.get_object("createNewTodo")
+        self.discardTodoButton = self.Builder.get_object("discardNewTodo")
 
         self.TodoList = []
 
         self.Store = StoreUtility()
         self.Input = InputUtility(self)
+        self.Voice = VoiceUtility(self)
 
         self.AddRemoveTUtility = AddRemoveUtility(self)
         self.PlayPauseTUtility = PlayPauseUtility(self)

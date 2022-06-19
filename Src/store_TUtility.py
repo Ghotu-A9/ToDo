@@ -30,9 +30,9 @@ class StoreUtility:
         file2.write(json.dumps(data))
         file2.close()
 
-    def modifyTodoStoreProperty(self,index,option,value):
+    def modifyTodoStoreProperty(self, index, option, value):
         loaded = self.getDatabase()
-        loaded[index][option] = value;
+        loaded[index][option] = value
         self.localWrite(loaded)
 
     def getDatabase(self):
@@ -40,4 +40,3 @@ class StoreUtility:
         loaded = json.load(file)
         file.close()
         return loaded
-

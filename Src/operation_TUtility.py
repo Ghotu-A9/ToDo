@@ -42,3 +42,4 @@ class OperationUtility:
                 nearestTodo = None
 
         return nearestTodo
+
