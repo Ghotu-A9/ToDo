@@ -25,7 +25,19 @@ builder.add_from_file("../assets/glade/Todo_Glade.glade")
 
 screen = Gdk.Screen.get_default()
 cprovider = Gtk.CssProvider()
-cprovider.load_from_path("../assets/css/main.css")
+
+settings = Gtk.Settings.get_default()
+
+settings.set_property("gtk-application-prefer-dark-theme",False)
+settings.set_property("gtk-theme-name", "Numix")
+
+print(settings.get_property("gtk-color-palette"))
+
+if settings.get_property("gtk-application-prefer-dark-theme"):
+    cprovider.load_from_path("../assets/css/main_dark.css")
+else:
+    cprovider.load_from_path("../assets/css/main_light.css")
+
 Gtk.StyleContext.add_provider_for_screen(screen, cprovider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
 
