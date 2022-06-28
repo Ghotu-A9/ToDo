@@ -28,11 +28,6 @@ cprovider = Gtk.CssProvider()
 
 settings = Gtk.Settings.get_default()
 
-settings.set_property("gtk-application-prefer-dark-theme",False)
-settings.set_property("gtk-theme-name", "Numix")
-
-print(settings.get_property("gtk-color-palette"))
-
 if settings.get_property("gtk-application-prefer-dark-theme"):
     cprovider.load_from_path("../assets/css/main_dark.css")
 else:
