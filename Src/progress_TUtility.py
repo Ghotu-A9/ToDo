@@ -43,6 +43,7 @@ class ProgressUtility:
 
     def todoProgressCompleted(self, comp, i, data):
         nearestTodo = self.App.Operation.findNearestPausedTodo(i)
+
         if nearestTodo is not None:
             data2 = self.App.PlayPauseTUtility.changeComponentIconsAndState("play", self.App.TodoList[nearestTodo],
                                                                             nearestTodo, data)
@@ -50,8 +51,9 @@ class ProgressUtility:
         else:
             self.App.Store.localWrite(data)
 
+
         threading.Thread(target=self.todoCompleteSound,
-                         args=('https://dl.espressif.com/dl/audio/gs-16b-2c-44100hz.mp3',),
+                         args=('../assets/alarms/mixkit-melodical-flute-music-notification-2310.wav',),
                          daemon=True).start()
 
     def todoCompleteSound(self, play):

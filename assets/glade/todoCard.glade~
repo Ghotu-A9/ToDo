@@ -98,6 +98,10 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="margin-top">10</property>
+            <property name="margin-bottom">5</property>
+            <style>
+              <class name="Todoseparator"/>
+            </style>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -230,7 +234,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
-                        <property name="tooltip-text" translatable="yes">Play Todo</property>
+                        <property name="tooltip-text" translatable="yes">Play</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
                         <child>

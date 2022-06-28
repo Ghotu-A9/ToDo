@@ -1,14 +1,17 @@
 import pyttsx3
 
-engine = pyttsx3.init()
+def speak(text):
+    engine = pyttsx3.init()
 
-name = "Smora"
+
+    voices = engine.getProperty('voices')
+
+    print(voices[29].name)
+
+    engine.setProperty('voice',voices[11].id) #Eng
+
+    engine.say(text)
+    engine.runAndWait()
 
 
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[3].id)
-
-engine.say(name)
-
-engine.runAndWait()
-engine.stop()
+speak('Hello')
