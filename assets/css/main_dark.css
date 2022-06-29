@@ -18,8 +18,8 @@
     border-radius: 5px;
     margin:5px;
     padding: 15px;
-    box-shadow:black 0px 0px 2.5px 0px;
-    background-color: #121212;
+    box-shadow:black 2px 2px 2.5px 0px, 0px 0px 0px 0.5px;
+    background-color: transparent;
 }
 
 .TodoText{
@@ -33,10 +33,9 @@
     padding-right: 15px;
     padding-top:5px;
     padding-bottom:5px;
-    background-color:#121212;
     border-radius:100px;
     color: white;
-    box-shadow:black 0px 0px 2.5px 0px;
+    box-shadow:black 0px 2px 2.5px 0px, 0px 0px 0px 0.5px;
 }
 
 .ToDoTop{
@@ -71,11 +70,32 @@
 }
 
 .Todoseparator{
-    background-color:#303030;
+    background-color:#505050;
 }
 
 .TodoSwitch > *{
     padding:7.5px 20px;
 }
+
+.userAccountOnlineText{
+    color:gold;
+}
+
+.onlineLeaveProjectButton{
+    border:1px solid rgba(255,0,0,0.5);
+}
+
+.onlineLeaveProjectButton:hover{
+     border:1px solid red;
+}
+
+.onlineDoneProjectButton{
+    border:1px solid rgba(0,128,0,0.5);
+}
+
+.onlineDoneProjectButton:hover{
+    border:1px solid green;
+}
+
 
 

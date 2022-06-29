@@ -14,12 +14,6 @@ from voice_Utility import VoiceUtility
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gdk, GLib
 
-# the rewind button is not set the progress is not in store ie not storing
-
-# the datastore problem
-#  ! now solved (because of todoProgressCompleted function in (progress_TUtility.py) -> double writing the database,
-#  don`t use the playpauseTodo function for other functionality)
-
 builder = Gtk.Builder()
 builder.add_from_file("../assets/glade/Todo_Glade.glade")
 
@@ -28,21 +22,15 @@ cprovider = Gtk.CssProvider()
 
 settings = Gtk.Settings.get_default()
 
+
+
 if settings.get_property("gtk-application-prefer-dark-theme"):
     cprovider.load_from_path("../assets/css/main_dark.css")
 else:
+    settings.set_property("gtk-theme-name", "light")
     cprovider.load_from_path("../assets/css/main_light.css")
 
 Gtk.StyleContext.add_provider_for_screen(screen, cprovider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-
-
-def getActiveRadio(radio):
-    active = None
-    for rad in radio.get_group():
-        if rad.get_active():
-            active = rad
-    return active
-
 
 class App:
 
