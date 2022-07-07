@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.38.2 -->
 <interface>
-  <requires lib="gtk+" version="3.20"/>
+  <requires lib="gtk+" version="3.24"/>
   <!-- interface-local-resource-path /media/user/Work/Python/Glade/ToDo/assets -->
   <object class="GtkAdjustment" id="adjustment1">
     <property name="lower">1</property>
@@ -548,6 +548,9 @@
             <property name="position">9</property>
           </packing>
         </child>
+        <style>
+          <class name="account_popover"/>
+        </style>
       </object>
     </child>
   </object>
