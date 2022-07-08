@@ -1,7 +1,7 @@
 import json
 
 
-class StoreUtility:
+class StoreTUtility:
 
     def __init__(self):
         self.DataStorage = "../assets/data/database.json"

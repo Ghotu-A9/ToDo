@@ -2,7 +2,8 @@ import gi
 import TodoTComp
 
 from input_Utility import InputUtility
-from store_TUtility import StoreUtility
+from store_TUtility import StoreTUtility
+from store_Utility import StoreUtility
 from Initial_setup_TUtility import InitialSetupUtility
 from add_remove_TUtility import AddRemoveUtility
 from event_Utility import EventUtility
@@ -11,12 +12,12 @@ from progress_TUtility import ProgressUtility
 from operation_TUtility import OperationUtility
 from voice_Utility import VoiceUtility
 
+gi.require_version('Wnck', '3.0')
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gdk, GLib
+from gi.repository import Gtk, Gdk, GLib, Wnck, Gio
 
 builder = Gtk.Builder()
 builder.add_from_file("../assets/glade/Todo_Glade.glade")
-
 
 screen = Gdk.Screen.get_default()
 cprovider = Gtk.CssProvider()
@@ -24,20 +25,19 @@ cprovider1 = Gtk.CssProvider()
 
 settings = Gtk.Settings.get_default()
 
-
-
 if settings.get_property("gtk-application-prefer-dark-theme"):
 
     cprovider.load_from_path("../assets/themes/chromeos_theme/ChromeOS-dark/gtk-3.0/gtk.css")
     cprovider1.load_from_path("../assets/css/main_dark.css")
 
 else:
-     cprovider.load_from_path("../assets/themes/chromeos_theme/ChromeOS-light/gtk-3.0/gtk.css")
-     cprovider1.load_from_path("../assets/css/main_light.css")
+    cprovider.load_from_path("../assets/themes/chromeos_theme/ChromeOS-light/gtk-3.0/gtk.css")
+    cprovider1.load_from_path("../assets/css/main_light.css")
 
 Gtk.StyleContext.add_provider_for_screen(screen, cprovider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
 Gtk.StyleContext.add_provider_for_screen(screen, cprovider1, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
 
 class App:
 
@@ -51,8 +51,10 @@ class App:
         self.discardTodoButton = self.Builder.get_object("discardNewTodo")
 
         self.TodoList = []
+        self.ActiveWindow = {}
 
-        self.Store = StoreUtility()
+        self.DBStore = StoreUtility()
+        self.Store = StoreTUtility()
         self.Input = InputUtility(self)
         self.Voice = VoiceUtility(self)
 
@@ -67,6 +69,18 @@ class App:
 
         self.Window.connect("destroy", Gtk.main_quit)
         self.Window.show_all()
+
+        self.Events.registerActiveWindowChangeEvent()
+
+        dictData = {
+            "placeholder": "lol",
+            "time": 12541,
+            "extra_time": 242414,
+            "programs": ["lollop", "polloi", "hkeys"],
+            "p_names": ["khaki", "gush", "ghoul"]
+        }
+        # self.DBStore.saveLocalAnalyticalData(dictData)
+        print(self.DBStore.getAllLocalAnalyticalData())
 
 
 App()
