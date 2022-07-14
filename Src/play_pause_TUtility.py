@@ -1,4 +1,6 @@
 import datetime
+import threading
+
 import gi
 
 gi.require_version("Gtk", "3.0")
@@ -17,6 +19,10 @@ class PlayPauseUtility:
     def playpauseTodo(self, button, comp, index):
         index = self.App.TodoList.index(comp)
         data = None
+
+        if comp.isCompleted:
+            self.App.DBStore.updateLocalAnalyticalData((index + 1), "extra_time", comp.extraATime)
+
         if comp.state == "Completed":
 
             comp.absoluteProgress = (comp.absoluteProgress - (comp.absoluteProgress * (self.reloadAmount / 100)))
@@ -37,10 +43,12 @@ class PlayPauseUtility:
                 todoComp = self.App.TodoList[i]
                 data = self.changeComponentIconsAndState("pause", todoComp, i, data)
 
-
         self.App.Store.localWrite(data)
 
     def changeComponentIconsAndState(self, which, comp, index, data):
+
+        if comp.isCompleted:
+            self.updateAnalytics_ExtraTime(comp, index)
 
         fileData = data or self.App.Store.getDatabase()
 
@@ -49,15 +57,19 @@ class PlayPauseUtility:
             if comp.state != "Playing":
                 self.changeComponentIcons("play", comp)
                 comp.state = "Playing"
+                self.App.ActiveTodoIndex = index
                 fileData[index]["state"] = "Playing"
                 fileData[index]["progress"] = comp.absoluteProgress
-                self.App.canProgress = True;
+                self.App.canProgress = True
                 self.App.ProgressTUtility.advanceProgress(fileData[index]["progress"], fileData[index]["data"]["time"],
                                                           comp,
                                                           datetime.datetime.now(), index, fileData)
             else:
                 self.changeComponentIcons("pause", comp)
                 comp.state = "Paused"
+
+                self.checkForCompletedAndPausedTodo(index)
+
                 fileData[index]["state"] = "Paused"
                 fileData[index]["progress"] = comp.absoluteProgress
                 if comp.progressThread is not None:
@@ -72,6 +84,9 @@ class PlayPauseUtility:
 
                 self.changeComponentIcons("pause", comp)
                 comp.state = "Paused"
+
+                self.checkForCompletedAndPausedTodo(index)
+
                 fileData[index]["state"] = "Paused"
                 fileData[index]["progress"] = comp.absoluteProgress
 
@@ -80,12 +95,10 @@ class PlayPauseUtility:
                     comp.progressThread = None
                     comp.absoluteProgress = (comp.todoProgress.get_fraction() * 100)
 
-
-
         if which == "play":
-
             self.changeComponentIcons("play", comp)
             comp.state = "Playing"
+            self.App.ActiveTodoIndex = index
             fileData[index]["state"] = "Playing"
             fileData[index]["progress"] = comp.absoluteProgress
             self.App.Store.modifyTodoStoreProperty(index, "progress", comp.absoluteProgress)
@@ -96,6 +109,8 @@ class PlayPauseUtility:
         if which == "complete":
             self.changeComponentIcons("complete", comp)
             comp.state = "Completed"
+            self.checkForCompletedAndPausedTodo(index)
+
             fileData[index]["state"] = "Completed"
             fileData[index]["progress"] = comp.absoluteProgress
 
@@ -119,3 +134,16 @@ class PlayPauseUtility:
         if which == "complete":
             icon.set_from_icon_name("media-seek-backward", Gtk.IconSize.BUTTON)
             comp.controlButton.set_tooltip_text("Rewind")
+
+    def updateAnalytics_ExtraTime(self, comp, index):
+
+        def update(c, i):
+            self.App.DBStore.updateLocalAnalyticalData((i + 1), "extra_time", c.extraATime)
+
+        threading.Thread(target=update,
+                         args=(comp, index),
+                         daemon=True).start()
+
+    def checkForCompletedAndPausedTodo(self, index):
+        if self.App.ActiveTodoIndex == index:
+            self.App.ActiveTodoIndex = None

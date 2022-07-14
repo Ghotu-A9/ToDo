@@ -13,37 +13,37 @@ class OperationUtility:
         nearestPositive = 1
         nearestNegative = len(self.App.TodoList)
         negsign = False
+        checkForAllCompleted = True
 
         if len(self.App.TodoList) > 1:
             length = len(self.App.TodoList)
             for l in range(length):
-                if self.App.TodoList[l].state == "Paused":
+                if self.App.TodoList[l].state == "Paused" or self.App.TodoList[l].state == "Created":
+                    checkForAllCompleted = False
                     if (i - l) > 0:
                         nearestPositive = (i - l)
                         negsign = True
-                        #print("upper", nearestPositive)
+                        # print("upper", nearestPositive)
                     elif (i - l) < 0:
                         nearestNegative = min(nearestNegative, (l - i))
-                        #print("lower",nearestNegative)
+                        # print("lower",nearestNegative)
                         negsign = False
                     else:
-                         nearestTodo = None
+                        nearestTodo = None
         else:
             nearestTodo = None
 
-        #print("upper", nearestPositive)
-        #print("lower",nearestNegative)
-        #print("///////////////")
+        # print("upper", nearestPositive)
+        # print("lower",nearestNegative)
+        # print("///////////////")
 
-
-        if negsign:
+        if negsign and not checkForAllCompleted:
             nearestTodo = (i - nearestPositive)
-        elif not negsign:
+        elif not negsign and not checkForAllCompleted:
             nearestTodo = (i + nearestNegative)
         else:
             nearestTodo = None
 
-        #print("nearestTodo",nearestTodo)
-        #print("///////////////////////////////////////////////////////")
+        # print("nearestTodo",nearestTodo)
+        # print("///////////////////////////////////////////////////////")
         return nearestTodo
-

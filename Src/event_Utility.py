@@ -20,15 +20,29 @@ class EventUtility:
         todoComp.removeButton.connect("clicked", self.App.AddRemoveTUtility.removeTodoExcited, todoComp)
         todoComp.controlButton.connect("clicked", self.App.PlayPauseTUtility.playpauseTodo, todoComp, index)
 
-    def registerActiveWindowChangeEvent(self):
-        def saveWindowStatus(screen,window):
+    def registerActiveWindowChangeEventDefault(self):
+        def saveWindowStatus(screen, window):
             if screen.get_active_window():
-                #print(screen.get_active_window().get_icon().savev("lol1","png"))
+                # print(screen.get_active_window().get_icon().savev("lol1","png"))
                 program = (screen.get_active_window().get_name()).split()
                 name = screen.get_active_window().get_name()
                 icon = screen.get_active_window().get_icon()
-                self.App.ActiveWindow={"program":program[len(program)-1],"name":name,"icon":icon}
+                self.App.ActiveWindow = {"program": program[len(program) - 1], "name": name, "icon": icon}
 
-        self.screen.connect("active-window-changed",saveWindowStatus)
+        self.screen.connect("active-window-changed", saveWindowStatus)
 
+    def registerActiveWindowChangeEvent(self, fun):
+        def saveWindowStatus(screen, window):
+            fun(screen, window)
 
+        self.screen.connect("active-window-changed", saveWindowStatus)
+
+    def getActiveWindow(self):
+        if self.screen.get_active_window():
+            # print(screen.get_active_window().get_icon().savev("lol1","png"))
+            program = (self.screen.get_active_window().get_name()).split()
+            name = self.screen.get_active_window().get_name()
+            icon = self.screen.get_active_window().get_icon()
+            activeWindow = {"program": program[len(program) - 1], "name": name, "icon": icon}
+
+            return activeWindow

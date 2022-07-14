@@ -1,10 +1,16 @@
 import json
-
+import os.path
 
 class StoreTUtility:
 
     def __init__(self):
         self.DataStorage = "../assets/data/database.json"
+
+
+        if not os.path.exists(self.DataStorage):
+            f = open(self.DataStorage, "w")
+            f.write("[]")
+            f.close()
 
         print("Initialized Todo Database")
 

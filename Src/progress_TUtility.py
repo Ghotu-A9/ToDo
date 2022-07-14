@@ -20,15 +20,19 @@ class ProgressUtility:
         todo.todoProgress.set_fraction(value / 100)
         todo.progressLabel.set_text(str(format(value, ".2f")) + "%")
 
-    def advanceProgress(self, initial, given, comp, lastTime, i, data):
+    def advanceProgress(self, initial, given, comp, lastTime, i, data, deltaTime=None):
         if self.canProgress:
+
             timeElapse = ((datetime.datetime.now() - lastTime).total_seconds()) / 60
             comp.relativeProgress = (timeElapse / given) * 100
             progress = comp.absoluteProgress + (timeElapse / given) * 100
 
             comp.progressThread = GLib.timeout_add(1, self.advanceProgress, initial + timeElapse, given, comp,
-                                                   lastTime, i, data)
+                                                   lastTime, i, data, datetime.datetime.now())
             self.setTodoProgress(comp, progress)
+
+            if comp.isCompleted is True and deltaTime is not None:
+                comp.extraATime += ((datetime.datetime.now() - deltaTime).total_seconds()) / 60
 
             if progress >= 100:
                 comp.relativeProgress = 100
@@ -39,6 +43,8 @@ class ProgressUtility:
                 comp.progressThread = None
 
                 data1 = self.App.PlayPauseTUtility.changeComponentIconsAndState("complete", comp, i, data)
+                comp.isCompleted = True
+                data1[i]["is_completed"] = True
                 self.todoProgressCompleted(comp, i, data1)
 
     def todoProgressCompleted(self, comp, i, data):

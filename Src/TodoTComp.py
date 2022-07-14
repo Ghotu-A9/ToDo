@@ -25,9 +25,12 @@ class Todo:
         self.controlButton = builder.get_object("ResumeTodo")
         self.completeButton = builder.get_object("ApplyTodo")
         self.progressThread = None
-        self.lastInitialisation = None;
+        self.lastInitialisation = None
         self.relativeProgress = 0
         self.absoluteProgress = 0
+        self.aId = None
+        self.extraATime = 0
+        self.isCompleted = False
 
         self.initialize()
 

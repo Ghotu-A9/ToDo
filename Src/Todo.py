@@ -1,3 +1,6 @@
+import datetime
+import pprint
+
 import gi
 import TodoTComp
 
@@ -52,6 +55,9 @@ class App:
 
         self.TodoList = []
         self.ActiveWindow = {}
+        self.LastActiveWindow = None
+        self.ActiveTodoIndex = None
+        self.LastActiveWindowOn = datetime.datetime.now()
 
         self.DBStore = StoreUtility()
         self.Store = StoreTUtility()
@@ -70,17 +76,15 @@ class App:
         self.Window.connect("destroy", Gtk.main_quit)
         self.Window.show_all()
 
-        self.Events.registerActiveWindowChangeEvent()
+        self.Events.registerActiveWindowChangeEventDefault()
 
-        dictData = {
-            "placeholder": "lol",
-            "time": 12541,
-            "extra_time": 242414,
-            "programs": ["lollop", "polloi", "hkeys"],
-            "p_names": ["khaki", "gush", "ghoul"]
-        }
-        # self.DBStore.saveLocalAnalyticalData(dictData)
-        print(self.DBStore.getAllLocalAnalyticalData())
+
+        # print(self.DBStore.saveLocalAnalyticalData(dictData))
+        # print(self.DBStore.getAllLocalAnalyticalData())
+        # print(self.DBStore.getSingleLocalAnalyticalData(2, "p_time"))
+        # self.DBStore.updateLocalAnalyticalData(1, "programs", ["lollop1", "polloi000", "hkeys11"])
+        # self.DBStore.removeSingleRowLocalAnalyticalData(2)
+
 
 
 App()
