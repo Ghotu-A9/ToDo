@@ -1,3 +1,5 @@
+import datetime
+
 import gi
 
 gi.require_version('Wnck', '3.0')
@@ -22,6 +24,7 @@ class EventUtility:
 
     def registerActiveWindowChangeEventDefault(self):
         def saveWindowStatus(screen, window):
+            self.App.LastActiveWindowOn = datetime.datetime.now()
             if screen.get_active_window():
                 # print(screen.get_active_window().get_icon().savev("lol1","png"))
                 program = (screen.get_active_window().get_name()).split()

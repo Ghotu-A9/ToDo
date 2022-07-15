@@ -58,6 +58,7 @@ class App:
         self.LastActiveWindow = None
         self.ActiveTodoIndex = None
         self.LastActiveWindowOn = datetime.datetime.now()
+        self.LastActiveTodoWithWindowOn = datetime.datetime.now()
 
         self.DBStore = StoreUtility()
         self.Store = StoreTUtility()

@@ -57,7 +57,10 @@ class PlayPauseUtility:
             if comp.state != "Playing":
                 self.changeComponentIcons("play", comp)
                 comp.state = "Playing"
+
+                self.checkForLastWindowTime()
                 self.App.ActiveTodoIndex = index
+
                 fileData[index]["state"] = "Playing"
                 fileData[index]["progress"] = comp.absoluteProgress
                 self.App.canProgress = True
@@ -98,7 +101,10 @@ class PlayPauseUtility:
         if which == "play":
             self.changeComponentIcons("play", comp)
             comp.state = "Playing"
+
+            self.checkForLastWindowTime()
             self.App.ActiveTodoIndex = index
+
             fileData[index]["state"] = "Playing"
             fileData[index]["progress"] = comp.absoluteProgress
             self.App.Store.modifyTodoStoreProperty(index, "progress", comp.absoluteProgress)
@@ -147,3 +153,6 @@ class PlayPauseUtility:
     def checkForCompletedAndPausedTodo(self, index):
         if self.App.ActiveTodoIndex == index:
             self.App.ActiveTodoIndex = None
+
+    def checkForLastWindowTime(self):
+        self.App.LastActiveTodoWithWindowOn = datetime.datetime.now()

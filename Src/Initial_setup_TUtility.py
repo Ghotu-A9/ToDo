@@ -11,6 +11,7 @@ class InitialSetupUtility:
 
         self.initializeTodo()
         self.App.Events.registerActiveWindowChangeEvent(self.windowChanged)
+
         print("Initial Setup Done")
 
     def initializeTodo(self):
@@ -33,6 +34,7 @@ class InitialSetupUtility:
             self.App.ProgressTUtility.setTodoProgress(todo, progress)
 
             if loaded[i]["state"] == "Playing":
+                self.App.ActiveTodoIndex = i
                 self.App.PlayPauseTUtility.changeComponentIcons("play", todo)
                 self.canProgress = True
                 self.App.ProgressTUtility.advanceProgress(loaded[i]["progress"], loaded[i]["data"]["time"], todo,
@@ -53,8 +55,20 @@ class InitialSetupUtility:
     def windowChanged(self, screen, window):
         index = self.App.ActiveTodoIndex
         activeProgram = self.App.ActiveWindow.get("program")
-        lastActiveProgram = self.App.LastActiveWindow
-        timeSpend = ((datetime.datetime.now() - self.App.LastActiveWindowOn).total_seconds()) / 60
+
+        if screen.get_previously_active_window() is not None:
+            program = (screen.get_previously_active_window().get_name()).split()
+            name = screen.get_previously_active_window().get_name()
+            icon = screen.get_previously_active_window().get_icon()
+            activeWindow = {"program": program[len(program) - 1], "name": name, "icon": icon}
+        else:
+            activeWindow = {"program": None, "name": None, "icon": None}
+
+        lastActiveProgram = activeWindow
+
+        timeSpend = ((datetime.datetime.now() - self.App.LastActiveTodoWithWindowOn).total_seconds()) / 60
+
+        self.App.LastActiveTodoWithWindowOn = datetime.datetime.now()
 
         if index is not None:
             activeTodo = self.App.TodoList[index]
@@ -63,14 +77,16 @@ class InitialSetupUtility:
             prvData = self.App.DBStore.getSingleLocalAnalyticalData(i, "p_time")
 
             def saveData(il, pData, lAP, aP, tS):
-                if lAP is not None:
+                if lAP.get("program") is not None:
 
                     if pData.get(lAP.get("program")) is not None:
                         pData[lAP.get("program")] = pData.get(lAP.get("program")) + tS
                     else:
                         pData[lAP.get("program")] = tS
+
                 else:
-                    pData.set(aP, tS)
+                    if pData.get(aP) is None:
+                        pData[aP] = None
 
                 print(pData)
 
@@ -79,5 +95,3 @@ class InitialSetupUtility:
             threading.Thread(target=saveData,
                              args=(i, prvData, lastActiveProgram, activeProgram, timeSpend),
                              daemon=True).start()
-
-        self.App.LastActiveWindow = self.App.ActiveWindow
