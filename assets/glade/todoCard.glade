@@ -7,11 +7,13 @@
     <property name="name">TodoMain</property>
     <property name="visible">True</property>
     <property name="can-focus">False</property>
+    <property name="margin-start">20</property>
+    <property name="margin-end">20</property>
     <child>
       <object class="GtkAspectFrame">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="halign">center</property>
+        <property name="halign">start</property>
         <property name="valign">center</property>
         <property name="label-xalign">0</property>
         <property name="shadow-type">none</property>
@@ -35,7 +37,7 @@
         </style>
       </object>
       <packing>
-        <property name="expand">True</property>
+        <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="padding">10</property>
         <property name="position">0</property>
@@ -52,38 +54,29 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <child>
-              <object class="GtkAspectFrame">
+              <object class="GtkLabel" id="TodoLabel">
+                <property name="name">TodoLabel</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label-xalign">0</property>
-                <property name="shadow-type">none</property>
-                <child>
-                  <object class="GtkLabel" id="TodoLabel">
-                    <property name="name">TodoLabel</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="hexpand">False</property>
-                    <property name="label" translatable="yes">Hello , Tomentor manages your  Work ✍ and provides you better analytics 📈 .</property>
-                    <property name="justify">center</property>
-                    <property name="wrap">True</property>
-                    <property name="ellipsize">end</property>
-                    <property name="width-chars">65</property>
-                    <property name="max-width-chars">120</property>
-                    <property name="lines">3</property>
-                    <attributes>
-                      <attribute name="font-desc" value="Bahnschrift 15"/>
-                      <attribute name="style" value="normal"/>
-                    </attributes>
-                    <style>
-                      <class name="TodoText"/>
-                    </style>
-                  </object>
-                </child>
+                <property name="label" translatable="yes">Hello , Tomentor manages your  Work ✍ and provides you better analytics 📈 .</property>
+                <property name="justify">center</property>
+                <property name="wrap">True</property>
+                <property name="ellipsize">end</property>
+                <property name="width-chars">50</property>
+                <property name="max-width-chars">100</property>
+                <property name="lines">3</property>
+                <attributes>
+                  <attribute name="font-desc" value="Bahnschrift 15"/>
+                  <attribute name="style" value="normal"/>
+                </attributes>
+                <style>
+                  <class name="TodoText"/>
+                </style>
               </object>
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
-                <property name="position">1</property>
+                <property name="position">0</property>
               </packing>
             </child>
           </object>
