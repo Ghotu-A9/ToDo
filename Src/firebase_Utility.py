@@ -6,7 +6,7 @@ from sqlite3 import Error
 class FirebaseUtility:
 
     def __init__(self):
-        self.webKey = "AIzaSyB3qd07SM_ytd6IFqppMaIATtPavH8ZClI"
+        self.webKey = FIREAPI_KEY
         self.emailSignupAddress = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + self.webKey
         self.emailVerificationSender = 'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=' + self.webKey
         self.emailSigninAddress = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + self.webKey
